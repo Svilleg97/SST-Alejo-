@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <!-- Vinculación con Google Fonts para la tipografía -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Configuración general del cuerpo */
+        body {
+            background-color: #1c1c1c; /* Fondo negro */
+            color: #D32F2F;           /* Letras rojas */
+            font-family: 'Noto Sans JP', sans-serif; /* Tipografía oriental moderna */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Hacer que el contenido esté dispuesto verticalmente */
+            align-items: center;
+            height: 100vh;          /* Altura completa de la ventana */
+            text-align: center;     /* Centrar texto */
+        }
+
+        /* Configuración general del formulario */
+        form {
+            background-color: #000000; /* Fondo negro para el formulario */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Sombra profunda */
+            width: 320px;
+            border: 2px solid #F5DEB3; /* Borde beige crema */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        /* Imagen del logo */
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px; /* Reducido el espacio entre el logo y el primer campo */
+        }
+
+        /* Mensaje debajo del logo */
+        .mensaje {
+            color: #F5DEB3; /* Beige crema */
+            font-size: 16px;
+            margin-bottom: 20px; /* Espacio entre el mensaje y el formulario */
+        }
+
+        /* Estilo de los labels y campos de entrada */
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #F5DEB3; /* Beige crema */
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px; /* Reducido el espacio entre los campos */
+            border: none;
+            border-radius: 5px;
+            background-color: #1c1c1c; /* Fondo negro */
+            color: #F5DEB3;           /* Texto beige crema */
+            border: 1px solid #F5DEB3; /* Borde beige crema */
+        }
+
+        input::placeholder {
+            color: #A8A8A8; /* Color gris para el texto de sugerencia */
+        }
+
+        /* Estilo del botón */
+        a#btnEnviar {
+            display: inline-block;
+            background-color: #D32F2F; /* Rojo fuerte */
+            color: #1c1c1c;            /* Texto negro */
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        a#btnEnviar:hover {
+            background-color: #F5DEB3; /* Beige crema */
+            transform: scale(1.05);    /* Ligera ampliación al pasar el cursor */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Formulario -->
+    <form action="javascript:void(0);">
+        <!-- Ruta de la imagen en la misma carpeta que el archivo HTML -->
+        <img src="images.jpeg" alt="Logo Secret Symbol Tattoo" class="logo">
+        
+        <!-- Mensaje debajo del logo -->
+        <div class="mensaje">
+            Si quieres agendar una cita, por favor completa toda la información 
+        </div>
+
+        <label for="datoNombre">Nombre completo</label>
+        <input id="datoNombre" type="text" placeholder="Escribe tu nombre completo" required>
+
+        <label for="datoPais">País</label>
+        <input id="datoPais" type="text" placeholder="Escribe tu país" required>
+
+        <label for="datoMensaje">¿Qué te quieres tatuar?</label>
+        <input id="datoMensaje" type="text" placeholder="Describe tu idea" required>
+
+        <a id="btnEnviar" href="#" onclick="enviar()">Enviar por WhatsApp</a>
+    </form>
+
+    <script>
+        // Función para enviar el formulario a WhatsApp
+        const datoNombre = document.querySelector('#datoNombre');
+        const datoPais = document.querySelector('#datoPais');
+        const datoMensaje = document.querySelector('#datoMensaje');
+        const btnEnviar = document.querySelector('#btnEnviar');
+
+        function enviar() {
+            if (!datoNombre.value.trim() || !datoPais.value.trim() || !datoMensaje.value.trim()) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            const numeroWhatsApp = "573106454919";
+            const mensaje = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=Hola,%20mi%20nombre%20es%20${encodeURIComponent(datoNombre.value)}.%0A` +
+                            `Soy%20de%20${encodeURIComponent(datoPais.value)}.%0AQuiero%20tatuarme:%20${encodeURIComponent(datoMensaje.value)}`;
+
+            btnEnviar.href = mensaje;
+            window.location.href = mensaje;
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
